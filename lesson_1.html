@@ -1,4 +1,4 @@
-<!-- episode4,5,7,8 -->
+<!-- episode4,5,7,8, 9 -->
 <!-- More on the this keywork to read later: -->
 <!-- https://medium.freecodecamp.org/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb -->
 <html lang="en">
@@ -36,12 +36,29 @@
         }
         //react method so we can use this keyword. not available outside for our custom funcs - use arrow notation for func definitions instead
         //arrow notation b/c it binds b/c passes 'this' as a param to use inside the function
-        
+        handleChange = (e) => {
+            this.setState({
+                name: e.target.value
+            });
+
+        }
+        handleSubmit =(e) =>{
+            //default js behaviour is to refresh on submit - use preventDefault to prevent the refresh
+            e.preventDefault();
+            console.log('form submitted',this.state.name);
+
+        }
         render(){
             return(
                 <div className="app-content">
-                    <h1>Hey Ninjas</h1>
+                    <h1>Hello World</h1>
                     <p>My name is { this.state.name } and I am { this.state.age } </p>
+                    // onsubmit on the form to catch both user pressing enter and clicking submit 
+                    <form onSubmit={ this.handleSubmit }>
+                        <input type="text" onChange= { this.handleChange }  />
+                        <button> Submit </button>
+                    </form>
+
                     <button onClick={ this.handleClick }>Click Me!</button>
                     <button onMouseOver={ this.handleMouesOver }>Hover me!</button>
                     <p onCopy={this.handleCopy}>What we think, we become</p>
