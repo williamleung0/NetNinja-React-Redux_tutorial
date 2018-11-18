@@ -1,4 +1,6 @@
-<!-- episode4,5 -->
+<!-- episode4,5,7,8 -->
+<!-- More on the this keywork to read later: -->
+<!-- https://medium.freecodecamp.org/this-is-why-we-need-to-bind-event-handlers-in-class-components-in-react-f7ea1a6f93eb -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,11 +21,30 @@
             name:'Bobbeh',
             age:26
         }
+        handleClick  = (e) => {
+            this.setState({
+                name:'Bubbeh',
+                age:30
+            })
+            console.log(this.state);
+        }
+        handleMouesOver = (e) => {
+            console.log(e.target,e.pageX);
+        }
+        handleCopy = (e) => {
+            console.log('Copied');
+        }
+        //react method so we can use this keyword. not available outside for our custom funcs - use arrow notation for func definitions instead
+        //arrow notation b/c it binds b/c passes 'this' as a param to use inside the function
+        
         render(){
             return(
                 <div className="app-content">
                     <h1>Hey Ninjas</h1>
                     <p>My name is { this.state.name } and I am { this.state.age } </p>
+                    <button onClick={ this.handleClick }>Click Me!</button>
+                    <button onMouseOver={ this.handleMouesOver }>Hover me!</button>
+                    <p onCopy={this.handleCopy}>What we think, we become</p>
                 </div>
             )
         }
